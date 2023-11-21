@@ -10,7 +10,7 @@ Se puede ejecutar directamente o mediante flags, del siguiente modo:
 &emsp;Sintaxis: ./hdfs-ls [-h|p|f|o]
 
 &emsp;Opciones:\
-&emsp;&emsp;-h     Muestra esta ayuda.\
+&emsp;&emsp;-h     Muestra la ayuda.\
 &emsp;&emsp;-p     Ruta para listar su contenido o buscar un fichero.\
 &emsp;&emsp;-f     Patron a encontrar dentro del contenido de la ruta. Si se deja en blanco, lista todo el contenido de la ruta.\
 &emsp;&emsp;-o     Segundo patron a encontrar dentro del contenido de la ruta. Puede ser el odate y si se deja en blanco, sólo busca coincidencias con el primer patrón.
