@@ -1,6 +1,8 @@
 #!/bin/bash
 
+echo ""
 read -p 'Escriba la fecha de llegada de ficheros en formato YYYY-MM-DD o deje en blanco para consultar la actual: ' current_date
+echo ""
 
 if [ -z "$current_date" ]
 then
