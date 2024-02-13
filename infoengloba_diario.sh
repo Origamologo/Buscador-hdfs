@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# Guarda la fecha actual en formato YYYY-MM-DD
-current_date=$(date +%F)
+read -p 'Escriba la fecha de llegada de ficheros en formato YYYY-MM-DD o deje en blanco para consultar la actual: ' current_date
+
+if [ -z "$current_date" ]
+then
+	# Guarda la fecha actual en formato YYYY-MM-DD
+	current_date=$(date +%F)
+fi
 
 # Comprueba que existe el fichero
 if [ -e "paths.txt" ]; then
