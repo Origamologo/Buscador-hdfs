@@ -43,47 +43,47 @@ done
 
 Buscar()
 {
-	if [ -z "$path" ]
-	then
-		# Ask the path to check
-		echo
-		read -p 'Ruta a consultar: ' path
+    if [ -z "$path" ]
+    then
+        # Ask the path to check
+        echo
+        read -p 'Ruta a consultar: ' path
 
-		# Ask the file to check
-		read -p 'Patrón a encontrar (dejar en blanco para listar todos los archivos): ' file
-	fi
+        # Ask the file to check
+        read -p 'Patrón a encontrar (dejar en blanco para listar todos los archivos): ' file
+    fi
 
-	if [ -z "$file" ]
-	then
-		hdfs dfs -ls $path
-	else
-		if [ -z "$odate" ]
-		then
-			read -p 'Odate o segundo patron (dejar en blanco para mostrar todas las ocurrencias de patron anterior): ' odate
-			echo
-		fi
-		
-		if [ -z "$odate" ]
-		then
-			hdfs dfs -ls -R $path | grep $file
-		else
-			hdfs dfs -ls -R $path | grep $file | grep $odate
-		fi
-	fi
-	
-	echo
-	read -p '¿Quiere realizar otra búsqueda? s/n ' repetir
-	echo
+    if [ -z "$file" ]
+    then
+        hdfs dfs -ls $path | tee busqueda_recursiva.txt
+    else
+        if [ -z "$odate" ]
+        then
+            read -p 'Odate o segundo patron (dejar en blanco para mostrar todas las ocurrencias de patron anterior): ' odate
+            echo
+        fi
+        
+        if [ -z "$odate" ]
+        then
+            hdfs dfs -ls -R $path | grep $file | tee busqueda_recursiva.txt
+        else
+            hdfs dfs -ls -R $path | grep $file | grep $odate | tee busqueda_recursiva.txt
+        fi
+    fi
+    
+    echo
+    read -p '¿Quiere realizar otra búsqueda? s/n ' repetir
+    echo
 
-	if [ "$repetir" = "s" ];
-	then
-		unset path
-		unset file
-		unset odate
-		Buscar
-	else
-		exit 0
-	fi
-	
+    if [ "$repetir" = "s" ];
+    then
+        unset path
+        unset file
+        unset odate
+        Buscar
+    else
+        exit 0
+    fi
+    
 }
 Buscar
