@@ -32,6 +32,7 @@ if [ -e "paths.txt" ]; then
     			current_date=$current_date
     		else
     			current_date=$(date +%F)
+    		fi
 	fi
 
     
