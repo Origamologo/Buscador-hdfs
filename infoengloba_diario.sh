@@ -23,8 +23,11 @@ if [ -e "paths.txt" ]; then
     	# Comprueba si el path es "/data/master/cib/xmce/data/t_xmce_intraday" y en caso afirmativo mira la carga de ayer
 	if [ "$path" = "/data/master/cib/xmce/data/t_xmce_intraday" ] && [ "$(date +%F)" = "$current_date" ]
 	then
-    		# If path is the specified path, set current_date to yesterday
+    		# Si las dos condiciones son verdaderas, comprueba la fecha de ayer
     		current_date=$(date -d "yesterday" +%F)
+    	else
+    		# En caso contrario, vuelve a la fecha de hoy
+    		current_date=$(date +%F)
 	fi
 
     
