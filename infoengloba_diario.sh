@@ -27,7 +27,11 @@ if [ -e "paths.txt" ]; then
     		current_date=$(date -d "yesterday" +%F)
     	else
     		# En caso contrario, vuelve a la fecha de hoy
-    		current_date=$current_date
+    		if [ "$(date +%F)" != "$current_date" ]
+    		then
+    			current_date=$current_date
+    		else
+    			current_date=$(date +%F)
 	fi
 
     
