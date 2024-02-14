@@ -10,13 +10,6 @@ then
     current_date=$(date +%F)
 fi
 
-# Comprueba si el path es "/data/master/cib/xmce/data/t_xmce_intraday" y en caso afirmativo mira la carga de ayer
-if [ "$path" = "/data/master/cib/xmce/data/t_xmce_intraday" ] && [ "$(date +%F)" = "$current_date" ]
-then
-    # If path is the specified path, set current_date to yesterday
-    current_date=$(date -d "yesterday" +%F)
-fi
-
 # Comprueba que existe el fichero
 if [ -e "paths.txt" ]; then
 
@@ -26,6 +19,14 @@ if [ -e "paths.txt" ]; then
 
     # Lee cada linea y busca el fichero para hoy
     while IFS= read -r path; do
+    
+    	# Comprueba si el path es "/data/master/cib/xmce/data/t_xmce_intraday" y en caso afirmativo mira la carga de ayer
+	if [ "$path" = "/data/master/cib/xmce/data/t_xmce_intraday" ] && [ "$(date +%F)" = "$current_date" ]
+	then
+    		# If path is the specified path, set current_date to yesterday
+    		current_date=$(date -d "yesterday" +%F)
+	fi
+
     
         output=$(hdfs dfs -ls "$path" | grep "$current_date")
         
