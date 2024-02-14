@@ -8,8 +8,6 @@ if [ -z "$current_date_input" ]
 then
     # Guarda la fecha actual en formato YYYY-MM-DD
     current_date=$(date +%F)
-else
-    current_date=$current_date_input
 fi
 
 # Comprueba que existe el fichero
