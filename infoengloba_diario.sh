@@ -4,10 +4,12 @@ echo ""
 read -p 'Escriba la fecha de llegada de ficheros en formato YYYY-MM-DD o deje en blanco para consultar la actual: ' current_date
 echo ""
 
-if [ -z "$current_date" ]
+if [ -z "$current_date_input" ]
 then
     # Guarda la fecha actual en formato YYYY-MM-DD
     current_date=$(date +%F)
+else
+    current_date=$current_date_input
 fi
 
 # Comprueba que existe el fichero
@@ -29,7 +31,7 @@ if [ -e "paths.txt" ]; then
     		# En caso contrario, vuelve a la fecha de hoy
     		if [ "$(date +%F)" != "$current_date" ]
     		then
-    			current_date=$current_date
+    			current_date=$current_date_input
     		else
     			current_date=$(date +%F)
     		fi
