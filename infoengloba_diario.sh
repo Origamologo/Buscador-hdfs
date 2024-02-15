@@ -3,12 +3,17 @@
 echo ""
 read -p 'Escriba la fecha de llegada de ficheros en formato YYYY-MM-DD o deje en blanco para consultar la actual: ' current_date
 echo ""
+echo "(Puede consultar el resultado de esta búsqueda en resultado_infoengloba.txt)"
+echo ""
 
-if [ -z "$current_date_input" ]
+if [ -z "$current_date" ]
 then
     # Guarda la fecha actual en formato YYYY-MM-DD
     current_date=$(date +%F)
 fi
+
+# Guarda el valor original de current_date
+original_current_date=$current_date
 
 # Comprueba que existe el fichero
 if [ -e "paths.txt" ]; then
@@ -20,22 +25,16 @@ if [ -e "paths.txt" ]; then
     # Lee cada linea y busca el fichero para hoy
     while IFS= read -r path; do
     
-    	# Comprueba si el path es "/data/master/cib/xmce/data/t_xmce_intraday" y en caso afirmativo mira la carga de ayer
-	if [ "$path" = "/data/master/cib/xmce/data/t_xmce_intraday" ] && [ "$(date +%F)" = "$current_date" ]
-	then
-    		# Si las dos condiciones son verdaderas, comprueba la fecha de ayer
-    		current_date=$(date -d "yesterday" +%F)
-    	else
-    		# En caso contrario, vuelve a la fecha de hoy
-    		if [ "$(date +%F)" != "$current_date" ]
-    		then
-    			current_date=$current_date_input
-    		else
-    			current_date=$(date +%F)
-    		fi
-	fi
+        # Comprueba si el path es "/data/master/cib/xmce/data/t_xmce_intraday" y en caso afirmativo mira la carga de ayer
+        if [ "$path" = "/data/master/cib/xmce/data/t_xmce_intraday" ] && [ "$(date +%F)" = "$current_date" ]
+        then
+            # Si las dos condiciones son verdaderas, comprueba la fecha de ayer
+            current_date=$(date -d "yesterday" +%F)
+        else
+            # En caso contrario, vuelve a la fecha original
+            current_date=$original_current_date
+        fi
 
-    
         output=$(hdfs dfs -ls "$path" | grep "$current_date")
         
         # Comprueba si han llegado ficheros o no

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo ""
+echo "Puede consultar el resultado de esta búsqueda en busqueda_recursiva.txt"
+echo ""
+
 Help()
 {
 	# Display Help
