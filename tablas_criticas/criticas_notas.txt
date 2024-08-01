@@ -1,0 +1,72 @@
+/data/master/nztg/data/ t_nztg_trade_core_inf_bo_eom
+/data/master/nztg/data/ t_nztg_trade_prod_inf_bo_eom
+/data/master/nztg/data/ t_nztg_secur_accounting_position
+/data/master/xrei/data/ t_xrei_trade_sa_ccr_attributes
+/data/master/risk/xctk/data/ t_xctk_wrong_way_risk
+/data/master/productsservices/xgug/data/ t_xgug_guarantee_fund
+/data/master/cib/xmce/data/ t_xmce_eod_prices_fi
+/data/master/cib/xmce/data/ t_xmce_fx_price
+/data/master/people/basicdata_knowledge_personalization/xdkq/data/ t_xdkq_clearing_house
+/data/master/xpdm/data/ t_xpdm_trade_netting_indicator
+/data/master/risk/xctk/data/ t_xctk_xva_risk
+/data/master/krdc/data/ t_krdc_issuances_fixed_income
+/data/master/productsservices/xgug/data/ t_xgug_collateral_balances
+/data/master/productsservices/xgug/data/ t_xgug_collateral_characteristic
+/data/master/krdc/data/ t_krdc_issuances_equity_derv
+/data/master/people/basicdata_knowledge_personalization/xdkq/data/ t_xdkq_issuers
+/data/master/people/basicdata_knowledge_personalization/xdkq/data/ t_xdkq_matrix_house
+/data/master/cib/xmce/data/ t_xmce_equity_prices
+/data/master/nztg/data/ t_nztg_trade_core_inf_fo_eod_agg
+/data/master/nztg/data/ t_nztg_trade_prod_inf_fo_eod_agg
+/data/master/people/basicdata_knowledge_personalization/xdkq/data/ t_xdkq_counterparty_dictionary
+/data/master/xgug/data/ t_xgug_trade_collateral_vm
+
+
+en cada geografia rellenas lo que aparezca a modo local
+si no está a modo local le metes la hora de HO
+Colombia no rellenes nztg, que esas no estan
+
+Además hay que tener encuenta que las tablas:
+
+t_krdc_issuances_fixed_income
+t_xdkq_issuers
+t_xdkq_matrix_house
+t_xdkq_counterparty_dictionary
+
+se sobreescriben, así que la fecha que da es la de la última escritura, que no tiene por qué ser la de cierre de mes, si no que depende del día que hagas la consulta
+
+Excepciones en geografías:
+
+    ["t_xmce_eod_prices_fi"]="HO"
+    ["t_xgug_collateral_balances"]="HO"
+    ["t_xgug_collateral_characteristic"]="HO"
+    ["t_krdc_issuances_equity_derv"]="HO"
+    ["t_xmce_equity_prices"]="HO"
+    ["t_nztg_trade_core_inf_fo_eod_agg"]="HO"
+    ["t_nztg_trade_prod_inf_fo_eod_agg"]="HO"
+    ["t_xgug_trade_collateral_vm"]="HO"
+    ["t_nztg_trade_core_inf_bo_eom"]="CO ES"
+    ["t_nztg_trade_prod_inf_bo_eom"]="CO ES"
+    ["t_nztg_secur_accounting_position"]="CO ES"
+    ["t_xpdm_trade_netting_indicator"]="CO ES"
+    ["t_xctk_wrong_way_risk"]="CO ES"
+    ["t_xdkq_clearing_house"]="CO ES"
+    ["t_xgug_guarantee_fund"]="HO CO"
+    ["t_xmce_fx_price"]="HO CO"
+    ["t_xctk_xva_risk"]="HO CO"
+    ["t_xctk_wrong_way_risk"]="HO CO"
+    ["t_xrei_trade_sa_ccr_attributes"]="HO CO ES"
+    ["t_krdc_issuances_fixed_income"]=""
+    ["t_xdkq_issuers"]=""
+    ["t_xdkq_matrix_house"]=""
+    ["t_xdkq_counterparty_dictionary"]=""
+
+Hacen overwrte y se mira la última ejecución (sin geografía):
+
+	"t_xdkq_counterparty_dictionary"
+	"t_xdkq_matrix_house"
+	
+Se mira por odate (sin geografía):
+
+	"t_krdc_issuances_fixed_income"
+	"t_xdkq_issuers"

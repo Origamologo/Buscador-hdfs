@@ -5,3 +5,27 @@ i WANT THE OUTPUT LIKE THIS
 +----------------------------------+------------+-------+-----------+
 | t_nztg_trade_prod_inf_fo_eod_agg | 2024-04-17 | 12:17 | ES        |
 +----------------------------------+------------+-------+-----------+
+
+
+
+Ayer faltaban estas:
+
+t_nztg_trade_prod_inf_bo_eom CO
+t_nztg_secur_accounting_position CO
+t_xrei_trade_sa_ccr_attributes ES
+t_xdkq_clearing_house ES
+t_xpdm_trade_netting_indicator ES
+t_xctk_xva_risk CO
+
+
+
+
+
+
+Las locales tienen geografías
+Holding tiene sólo un ingesta
+	Ante la duda si es holding y está particionado por entity, cojo esp
+Se le suman dos horas a lo que de hdfs y en octubre sólo se le suma una
+Para las locales se coje el último día de mes y holding último día laborable
+
+
